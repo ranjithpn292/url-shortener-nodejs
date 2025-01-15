@@ -1,11 +1,37 @@
 const express = require("express");
+
+const path = require("path");
 const app = express();
 
 const urlRoute = require("./routes/url");
 const URL = require("./models/url");
 const { connectToMongoDB } = require("./connect");
 
+app.set("view engine", "ejs");
+app.set("views", path.resolve("./views"));
+
 const PORT_NUMBER = 8081;
+
+app.get("/test", async (req, res) => {
+  const allURLs = await URL.find({});
+  res.end(`
+    <html>
+      <head>
+        <title> all URLS</title>
+      </head>
+      <body>
+      <ol>
+      ${allURLs
+        .map(
+          (url) =>
+            `<li>${url.shortId} - ${url.redirectURL} - ${url.visitHistory.length}</li>`
+        )
+        .join("")}
+      </ol>
+      </body>
+    </html>
+    `);
+});
 
 // iddleware - plugins
 app.use(express.json());
