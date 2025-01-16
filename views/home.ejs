@@ -7,12 +7,17 @@
 </head>
 <body>
     <h1>URL Shortener</h1>
-    <div>
-   <form method="POST" action="/url">
-    <input type="text" name="url" placeholder="enter url"/>
-    <button type="submit">Generate Short URL</button>
-   </form>
-</div>
+        <div>
+                <form method="POST" action="/url">
+                    <input type="text" name="url" placeholder="enter url"/>
+                    <button type="submit">Generate Short URL</button>
+                </form>
+        </div>
+        <div>
+            <% if (locals.shortURL) { %>
+                <p>URL Generated is: <a>http://localhost:8081/url/<%=shortURL %></a></p>
+            <% }%>          
+        </div>
 </body>
 </html>
 
