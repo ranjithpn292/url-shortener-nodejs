@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const app = express();
 const urlRoute = require("./routes/url");
-const URL = require("./models/url");
+const userRouter = require("./routes/user");
 const { connectToMongoDB } = require("./connect");
 const staticRouter = require("./routes/staticRouter");
 
@@ -20,6 +20,7 @@ app.use(express.json());
 //routes
 app.use("/url", urlRoute);
 app.use("/", staticRouter);
+app.use("/user", userRouter);
 
 // connect to DB
 connectToMongoDB("mongodb://localhost:27017/urlshortstore");
