@@ -21,15 +21,6 @@ app.use(express.json());
 app.use("/url", urlRoute);
 app.use("/", staticRouter);
 
-// UI view engine routes
-
-app.get("/test", async (req, res) => {
-  const allURLs = await URL.find({});
-  res.render("home", {
-    urls: allURLs,
-  });
-});
-
 // connect to DB
 connectToMongoDB("mongodb://localhost:27017/urlshortstore");
 

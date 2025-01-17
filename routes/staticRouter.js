@@ -2,8 +2,8 @@ const express = require("express");
 const URL = require("../models/url");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  const allURLs = URL.find({});
+router.get("/", async (req, res) => {
+  const allURLs = await URL.find({});
   res.render("home", {
     urls: allURLs,
   });
