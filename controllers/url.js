@@ -1,6 +1,13 @@
 const shortid = require("shortid");
 const URL = require("../models/url");
 
+async function handleHomePage(req, res) {
+  const allURLs = await URL.find({});
+  return res.render("home", {
+    urls: allURLs,
+  });
+}
+
 async function handleGenerateNewShortURl(req, res) {
   const body = req.body;
   if (!body.url) {
@@ -12,9 +19,10 @@ async function handleGenerateNewShortURl(req, res) {
     redirectURL: body.url,
     visitHistory: [],
   });
-
+  const allURLs = await URL.find({});
   return res.render("home", {
     shortURL: shortId,
+    urls: allURLs,
   });
 }
 
@@ -46,6 +54,7 @@ async function handleRedirectURL(req, res) {
 }
 
 module.exports = {
+  handleHomePage,
   handleGenerateNewShortURl,
   handleGetAnalytics,
   handleRedirectURL,

@@ -18,8 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //routes
-app.use("/url", urlRoute);
 app.use("/", staticRouter);
+app.use("/url", urlRoute);
 app.use("/user", userRouter);
 
 // connect to DB

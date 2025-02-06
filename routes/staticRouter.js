@@ -3,10 +3,11 @@ const URL = require("../models/url");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const allURLs = await URL.find({});
-  res.render("home", {
-    urls: allURLs,
-  });
+  // const allURLs = await URL.find({});
+  // res.render("home", {
+  //   urls: allURLs,
+  // });
+  res.render("login");
 });
 
 router.get("/signup", (req, res) => {
